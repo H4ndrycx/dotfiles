@@ -9,6 +9,7 @@ set shiftwidth=4
 set softtabstop=4
 set smartindent
 set number
+set relativenumber
 set gdefault
 set showmatch
 set incsearch
@@ -16,7 +17,6 @@ set ignorecase
 set smartcase
 set encoding=UTF-8
 set laststatus=2
-set noshowmode
 set inccommand=split
 set cursorline
 set hidden
@@ -40,51 +40,12 @@ if has('gui_running')
   set t_Co=256
 endif
 
-"Powerline fonts
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-
-" unicode symbols
-let g:airline_left_sep = '»'
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '«'
-let g:airline_right_sep = '◀'
-let g:airline_symbols.crypt = '🔒'
-let g:airline_symbols.linenr = '☰'
-let g:airline_symbols.linenr = '␊'
-let g:airline_symbols.linenr = '␤'
-let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.maxlinenr = ''
-let g:airline_symbols.maxlinenr = '㏑'
-let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.paste = 'Þ'
-let g:airline_symbols.paste = '∥'
-let g:airline_symbols.spell = 'Ꞩ'
-let g:airline_symbols.notexists = 'Ɇ'
-let g:airline_symbols.whitespace = 'Ξ'
-
-" powerline symbols
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = ''
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = ''
-let g:airline_symbols.maxlinenr = ''
-
 " Config theme
 set termguicolors
 set t_Co=256
 
 colorscheme gruvbox
 highlight Normal ctermbg=NONE guibg=NONE
-
-let g:airline_theme="dark"
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#formatter = 'unique_tail'
 
 if exists('+colorcolumn')
   set colorcolumn=80
@@ -100,8 +61,10 @@ nmap ga <Plug>(EasyAlign)
 
 " Keybinds
 let mapleader = "\<Space>"
-nnoremap <leader>n :bnext<CR>
-nnoremap <leader>p :bprev<CR>
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>ff <cmd>Telescope find_files<CR>
+nnoremap <leader>fb <cmd>Telescope buffers<CR>
+nnoremap <leader>a  <cmd>lua require("harpoon.mark").add_file()<CR>
+nnoremap <leader>h  <cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>
+nnoremap <leader>n  <cmd>lua require('harpoon.ui').nav_next()<CR>
+nnoremap <leader>p  <cmd>lua require('harpoon.ui').nav_prev()<CR>
 nnoremap <leader>v :vs<CR>
